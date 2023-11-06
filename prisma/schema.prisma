@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Event {
+  id    Int @id
+  name  String
+  category String
+  description String
+  organizer String
+  price Float
+  place String
+  dates EventDate[]
+  imgUrl String @map("img_url")
+
+  @@map("event")
+}
+
+model EventDate {
+  id    Int @id
+  start DateTime
+  end   DateTime
+  event Event @relation(fields: [eventId], references: [id])
+  eventId Int @map("event_id")
+
+  @@map("event_date")
+}
