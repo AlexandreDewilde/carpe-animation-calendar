@@ -40,7 +40,9 @@
         <table>
             <thead>
                 <tr>
-                    <th colspan="7">HEAD</th>
+                    {#each days as day}
+                        <th>{day}</th>
+                    {/each}
                 </tr>
             </thead>
             <tbody>
@@ -56,6 +58,9 @@
         width:100%;
         border-collapse: collapse;
 
+    }
+    th {
+        padding: 10px;
     }
     .container {
         display: block;
