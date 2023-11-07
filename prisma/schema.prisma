@@ -22,7 +22,7 @@ model Event {
 }
 
 model EventDate {
-  id    Int @id
+  id    Int @id @default(autoincrement())
   start DateTime
   end   DateTime
   event Event @relation(fields: [eventId], references: [id])
