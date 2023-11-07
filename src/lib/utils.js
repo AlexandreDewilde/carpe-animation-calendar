@@ -42,7 +42,6 @@ export function getSunday(monday) {
     return sunday;
 }
 
-
 export function eventsToByDayList(events) {
     const listEvents = [];
     for (let i = 0; i < 7; i++) {
@@ -50,8 +49,14 @@ export function eventsToByDayList(events) {
     }
     for (const event of events) {
         const day = (event.start.getDay() + 6) % 7;
-        console.log(event.event.name);
         listEvents[day].push(event);
     }
     return listEvents;
+}
+
+/**
+ * @param {Date} date
+ */
+export function dateToStringHours(date) {
+    return `${date.getHours()}h${date.getMinutes().toString().padStart(2,"0")}`;
 }

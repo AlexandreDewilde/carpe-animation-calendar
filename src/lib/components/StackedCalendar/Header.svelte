@@ -10,13 +10,15 @@
      */
      export let sunday;
 
-    let dateString = twoDatesToRead(monday, sunday);
-    function changeWeek(decrease=false) {
-        const constant = decrease ? -1 : 1;
-        monday.setDate(monday.getDate() + 7 * constant);
-        sunday.setDate(sunday.getDate() + 7 * constant);
-        dateString = twoDatesToRead(monday, sunday);
-    }
+    const dateString = twoDatesToRead(monday, sunday);
+    const nextMonday = new Date(monday);
+    const prevMonday = new Date(monday)
+    nextMonday.setDate(monday.getDate() + 7);
+    prevMonday.setDate(monday.getDate() - 7);
+    console.log(nextMonday);
+
+    const prevMondayUrl = `/${prevMonday.getFullYear()}-${prevMonday.getMonth()+1}-${prevMonday.getDate()}`;
+    const nextMondayUrl = `/${nextMonday.getFullYear()}-${nextMonday.getMonth()+1}-${nextMonday.getDate()}`;
 </script>
 
 <div class="calendar-header">
@@ -27,8 +29,8 @@
         <span>{dateString}</span>
     </div>
     <div class="calendar-header-right">
-        <button on:click={() => changeWeek(true)}>⬅️</button>
-        <button on:click={() => changeWeek(false)}>➡️</button>
+        <a href={prevMondayUrl}>⬅️</a>
+        <a href={nextMondayUrl}>➡️</a>
     </div>
 </div>
 
