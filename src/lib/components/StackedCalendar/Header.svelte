@@ -17,7 +17,9 @@
 <style>
     .calendar-col-head {
         border-top: 1px solid gray;
-        padding: 10px;
+        padding: 5px;
+        box-sizing: border-box;
+        align-items: center;
     }
     .calendar-day {
         font-weight: bold;

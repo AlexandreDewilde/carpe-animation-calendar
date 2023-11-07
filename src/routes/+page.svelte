@@ -1,5 +1,6 @@
 <script>
 	import StackedCalendar from "$lib/components/StackedCalendar/StackedCalendar.svelte";
+	export let data;
 </script>
 
 <svelte:head>
@@ -8,7 +9,7 @@
 </svelte:head>
 
 <section>
-	<StackedCalendar></StackedCalendar>
+	<StackedCalendar monday={data.monday} sunday={data.sunday} events={data.events}/>
 </section>
 
 <style>

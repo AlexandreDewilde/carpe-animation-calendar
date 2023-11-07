@@ -3,17 +3,15 @@
     import Header from "./Header.svelte";
     import { twoDatesToRead } from "$lib/utils";
     const days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimance"];
-    import {events} from "../data";
-
-    const date = new Date();
-    const idx = date.getDay();
-    const monday = new Date();
-    monday.setHours(0); monday.setMinutes(0); monday.setSeconds(0);
-    monday.setDate(monday.getDate() - idx + 1);
-
-    const sunday = new Date();
-    sunday.setHours(23); sunday.setMinutes(59); sunday.setSeconds(59);
-    sunday.setDate(monday.getDate() + 6);
+    /**
+        * @type {Date}
+    */
+    export let monday;
+    /**
+        * @type {Date}
+    */
+    export let sunday;
+    export let events;
 
     let dateString = twoDatesToRead(monday, sunday);
     function changeWeek(decrease=false) {
@@ -22,8 +20,6 @@
         sunday.setDate(sunday.getDate() + 7 * constant);
         dateString = twoDatesToRead(monday, sunday);
     }
-
-
 </script>
 
 
@@ -41,11 +37,32 @@
         </div>
     </div>
     <div class="calendar">
-        <Header days={days}/>
-        <Events events={events}/>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="7">HEAD</th>
+                </tr>
+            </thead>
+            <tbody>
+                <Events events={events}/>
+            </tbody>
+        </table>
     </div>
 </div>
 <style>
+    table {
+        border: 1px solid #ddd;
+        table-layout:fixed;
+        width:100%;
+        border-collapse: collapse;
+
+    }
+    .container {
+        display: block;
+        width: 100%;
+        height: 100%;
+        margin: 20px;
+    }
     .calendar-header {
         display: flex;
         width: 100%;
@@ -69,26 +86,5 @@
     }
     a {
         text-decoration: none;
-    }
-    .container {
-        display: block;
-        width: 100%;
-        height: 100%;
-        margin: 20px;
-    }
-    :global(.stacked-calendar-row) {
-        display: flex;
-        width: 100%;
-        border-bottom: 1px solid gray;
-    }
-    :global(.stacked-calendar-col) {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        border-right: 1px solid gray;
-
-    }
-    :global(.stacked-calendar-row .stacked-calendar-col:first-child) {
-        border-left: 1px solid gray;
     }
 </style>
