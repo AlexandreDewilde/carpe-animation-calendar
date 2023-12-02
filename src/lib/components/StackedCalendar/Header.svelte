@@ -1,5 +1,7 @@
 <script>
     import { twoDatesToRead } from "$lib/utils";
+    import  FaArrowLeft from "svelte-icons/fa/FaArrowLeft.svelte";
+    import FaArrowRight from "svelte-icons/fa/FaArrowRight.svelte";
 
     /**
      * @type {Date}
@@ -29,8 +31,8 @@
         <span>{dateString}</span>
     </div>
     <div class="calendar-header-right">
-        <a href={prevMondayUrl}>⬅️</a>
-        <a href={nextMondayUrl}>➡️</a>
+        <a href={prevMondayUrl}><FaArrowLeft/></a>
+        <a href={nextMondayUrl}><FaArrowRight/></a>
     </div>
 </div>
 
@@ -58,5 +60,8 @@
     }
     a {
         text-decoration: none;
+        width: 1em;
+        color: black;
+        margin: 5px;
     }
 </style>
