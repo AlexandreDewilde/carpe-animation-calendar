@@ -1,15 +1,14 @@
-# Calendrier de l'animation
+# 📅 Animation Calendar
 
 ## Install
 
 ```
 npm install
-
 ```
 
-Configure .env file based on the .env.example file
+Configure your .env file based on the provided .env.example file.
 
-init database
+Initialize the database:
 
 ```shell
 npx prisma migrate dev --name init
@@ -20,7 +19,6 @@ npx prisma migrate dev --name init
 ```
 npx prisma generate
 npx prisma migrate dev --name update_name --create-only
-
 ```
 
 ## Run
