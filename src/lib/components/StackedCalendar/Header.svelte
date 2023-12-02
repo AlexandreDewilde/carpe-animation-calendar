@@ -12,15 +12,18 @@
      */
      export let sunday;
 
-    const dateString = twoDatesToRead(monday, sunday);
-    const nextMonday = new Date(monday);
-    const prevMonday = new Date(monday)
-    nextMonday.setDate(monday.getDate() + 7);
-    prevMonday.setDate(monday.getDate() - 7);
-    console.log(nextMonday);
+    $: dateString = twoDatesToRead(monday, sunday);
+    $: nextMonday = new Date(monday);
+    $: prevMonday = new Date(monday);
+    let nextMondayUrl = "";
+    let prevMondayUrl = "";
+    $: {
+        nextMonday.setDate(monday.getDate() + 7);
+        nextMondayUrl = `/${nextMonday.getFullYear()}-${nextMonday.getMonth()+1}-${nextMonday.getDate()}`;
+        prevMonday.setDate(monday.getDate() - 7);
+        prevMondayUrl = `/${prevMonday.getFullYear()}-${prevMonday.getMonth()+1}-${prevMonday.getDate()}`;
+    }
 
-    const prevMondayUrl = `/${prevMonday.getFullYear()}-${prevMonday.getMonth()+1}-${prevMonday.getDate()}`;
-    const nextMondayUrl = `/${nextMonday.getFullYear()}-${nextMonday.getMonth()+1}-${nextMonday.getDate()}`;
 </script>
 
 <div class="calendar-header">
