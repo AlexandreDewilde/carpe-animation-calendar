@@ -26,3 +26,19 @@ npx prisma migrate dev --name update_name --create-only
 ```shell
 npm run dev
 ```
+
+## TODO
+
+* Different langage versions
+* Month and day view
+* By categories view
+* Add login
+* Add moderation page
+* Day view by default on mobile
+* Add a "add event page"
+* Add a "request update event page"
+* Add a "event page"
+* create a PWA
+* Filter by category
+* export to webcal
+* export to a pdf image
