@@ -26,6 +26,7 @@
 	},
 	"dependencies": {
 		"@prisma/client": "^5.5.2",
+		"svelte-icons": "^2.1.0",
 		"tippy.js": "^6.3.7"
 	}
 }
