@@ -6,7 +6,7 @@
      */
      export let events;
 
-    const eventsList = eventsToByDayList(events);
+    $: eventsList = eventsToByDayList(events);
 </script>
 
 <tr>
