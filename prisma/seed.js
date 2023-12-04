@@ -8,11 +8,27 @@ async function main() {
 
     for (const event of data) {
         const price = event.infos.price === "Gratuit" ? 0 : parseFloat(event.infos.price);
+
+        let category = await prisma.category.findFirst({
+            where: {
+                name: event.infos.category,
+            },
+        });
+
+        if (!category) {
+            category = await prisma.category.create({
+                data: {
+                    name: event.infos.category,
+                    color: "black",
+                    backgroundColor: "white",
+                }
+            });
+        }
+
         const new_event = await prisma.event.create({
             data: {
-                id: parseInt(event.id),
                 name: event.name,
-                category: event.infos.category,
+                categoryId: category.id,
                 description: event.description,
                 organizer: event.infos.organizer,
                 price: price,
@@ -25,7 +41,7 @@ async function main() {
                 data: {
                     start: new Date(date[0]),
                     end: new Date(date[1]),
-                    eventId: parseInt(event.id),
+                    eventId: new_event.id,
                 }
             })
         }
