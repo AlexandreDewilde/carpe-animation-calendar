@@ -1,5 +1,11 @@
 <script>
 	import AddEvent from "$lib/components/AddEvent.svelte";
+
+	/** @type {import('./$types').PageData} */
+	export let data;
+
+	/** @type {import('./$types').ActionData} */
+	export let form;
 </script>
 
 <svelte:head>
@@ -8,7 +14,7 @@
 </svelte:head>
 
 <section>
-	<AddEvent/>
+	<AddEvent categories={data.categories}/>
 </section>
 
 <style>
