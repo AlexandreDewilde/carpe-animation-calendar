@@ -29,16 +29,21 @@ npm run dev
 
 ## TODO
 
-* Different langage versions
-* Month and day view
-* By categories view
-* Add login
-* Add moderation page
-* Day view by default on mobile
-* Add a "add event page"
-* Add a "request update event page"
+### Next
+* ~~Filter by category~~
+* ~~Add a "add event page"~~
 * Add a "event page"
+* Add moderation page
+* Responsive Day view for mobile
+
+### Later
+* Month View
+* By categories view: rows of events by categories
+* Add login
+* Add a "request update event page": idea -> send a code by email to update the event
+* Different langage versions
 * create a PWA
-* Filter by category
+
+### Later Later...
 * export to webcal
 * export to a pdf image
