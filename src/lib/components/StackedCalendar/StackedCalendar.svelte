@@ -3,6 +3,8 @@
     import Header from "./Header.svelte";
 
     import TableHead from "./TableHead.svelte";
+
+    import { twoDatesToRead } from "$lib/utils";
     /**
         * @type {Date}
     */
@@ -12,10 +14,22 @@
     */
     export let sunday;
     export let events;
+
+    $: dateString = twoDatesToRead(monday, sunday);
+    $: nextMonday = new Date(monday);
+    $: prevMonday = new Date(monday);
+    let nextMondayUrl = "";
+    let prevMondayUrl = "";
+    $: {
+        nextMonday.setDate(monday.getDate() + 7);
+        nextMondayUrl = `/${nextMonday.getFullYear()}-${nextMonday.getMonth()+1}-${nextMonday.getDate()}`;
+        prevMonday.setDate(monday.getDate() - 7);
+        prevMondayUrl = `/${prevMonday.getFullYear()}-${prevMonday.getMonth()+1}-${prevMonday.getDate()}`;
+    }
 </script>
 
 <div class="calendar">
-    <Header monday={monday} sunday={sunday}/>
+    <Header title={dateString} prevUrl={prevMondayUrl} nextUrl={nextMondayUrl}/>
     <table>
         <thead>
             <TableHead/>

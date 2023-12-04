@@ -1,41 +1,41 @@
 <script>
-    import { twoDatesToRead } from "$lib/utils";
     import  FaArrowLeft from "svelte-icons/fa/FaArrowLeft.svelte";
     import FaArrowRight from "svelte-icons/fa/FaArrowRight.svelte";
 
     /**
-     * @type {Date}
+     * @type {string}
      */
-     export let monday;
-    /**
-     * @type {Date}
-     */
-     export let sunday;
+    export let title;
 
-    $: dateString = twoDatesToRead(monday, sunday);
-    $: nextMonday = new Date(monday);
-    $: prevMonday = new Date(monday);
-    let nextMondayUrl = "";
-    let prevMondayUrl = "";
-    $: {
-        nextMonday.setDate(monday.getDate() + 7);
-        nextMondayUrl = `/${nextMonday.getFullYear()}-${nextMonday.getMonth()+1}-${nextMonday.getDate()}`;
-        prevMonday.setDate(monday.getDate() - 7);
-        prevMondayUrl = `/${prevMonday.getFullYear()}-${prevMonday.getMonth()+1}-${prevMonday.getDate()}`;
-    }
+    /**
+     * @type {string}
+     */
+    export let prevUrl;
+    /**
+     * @type {string}
+     */
+    export let nextUrl;
 
 </script>
 
 <div class="calendar-header">
     <div class="calendar-header-left">
-        <a href="/">Jour</a>
+        <a href="/addEvent">Ajouter un événement</a>
     </div>
     <div class="calendar-title">
-        <span>{dateString}</span>
+        <span>{title}</span>
     </div>
     <div class="calendar-header-right">
-        <a href={prevMondayUrl}><FaArrowLeft/></a>
-        <a href={nextMondayUrl}><FaArrowRight/></a>
+        <div class="header-button">
+            <a href="/">Mois</a>
+        </div>
+        <div class="header-button">
+            <a href="/">Aujourd'hui</a>
+        </div>
+        <div class="arrows">
+            <a href={prevUrl}><FaArrowLeft/></a>
+            <a href={nextUrl}><FaArrowRight/></a>
+        </div>
     </div>
 </div>
 
@@ -44,22 +44,19 @@
         display: flex;
         width: 100%;
         align-items: center;
-        justify-content: center;
-    }
-    .calendar-header-left {
-        flex: auto;
+        justify-content: space-between;
     }
     .calendar-title {
-        flex: auto;
         display: flex;
-        justify-content: center;
         font-size: 2em;
         padding: 10px;
     }
     .calendar-header-right {
-        flex: auto;
         display: flex;
-        justify-content: right;
+        align-items: center;
+    }
+    .arrows {
+        display: flex;
     }
     a {
         text-decoration: none;
