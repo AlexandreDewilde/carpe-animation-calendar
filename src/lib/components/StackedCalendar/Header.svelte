@@ -27,7 +27,9 @@
     </div>
     <div class="calendar-header-right">
         <div class="header-button">
-            <a href="/">Mois</a>
+            <!--
+                <a href="/">Mois</a>
+            -->
         </div>
         <div class="header-button">
             <a href="/">Aujourd'hui</a>
