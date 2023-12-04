@@ -1,28 +1,64 @@
 <script>
+    export let categories;
 
+    // Can be used to perform validation on the frontend later
+    let name = "";
+    let description = "";
+    let place = "";
+    let category = 0;
+    let organizer = "";
+    let email = "";
+    let price = 0;
+    let start = "";
+    let end = "";
 </script>
 
 <section>
-    <form>
+    <form method="post">
         <section class="form">
 
-            <label for="event-title">Titre</label>
-            <input type="text" id="event-title" name="event-title" placeholder="Titre"/>
+            <label for="event-name">Nom</label>
+            <input type="text" id="event-name" name="event-name" placeholder="Nom" bind:value={name}/>
+
+            <label for="event-description">Description</label>
+            <textarea id="event-description" name="event-description" placeholder="Description" bind:value={description}/>
 
             <label for="event-place">Lieu</label>
-            <input type="text" id="event-place" name="event-place" placeholder="Centre placet"/>
+            <input type="text" id="event-place" name="event-place" placeholder="Centre placet" bind:value={place}/>
 
             <label for="event-category">Categorie</label>
-            <input type="text" id="event-category" name="event-category" placeholder="Arts"/>
+            <select id="event-category" name="event-category" bind:value={category}>
+                {#each categories as category}
+                    <option value={category.id}>{category.name}</option>
+                {/each}
+            </select>
 
             <label for="event-organizer">Organisateur</label>
-            <input type="text" id="event-organizer" name="event-organizer" placeholder="CarpeStudentem"/>
+            <input type="text" id="event-organizer" name="event-organizer" placeholder="CarpeStudentem" bind:value={organizer}/>
 
             <label for="event-email">Email</label>
-            <input type="text" id="event-email" name="event-email" placeholder="carpestudentem@gmail.com"/>
+            <input type="email" id="event-email" name="event-email" placeholder="carpestudentem@gmail.com" bind:value={email}/>
 
             <label for="event-price">Prix</label>
-            <input type="text" id="event-price" name="event-price" placeholder="0"/>
+            <input type="number" step="0.01" min="0" id="event-price" name="event-price" placeholder="0" bind:value={price}/>
+
+            <label for="event-start">Début de l'évènement</label>
+            <input
+                type="datetime-local"
+                id="event-start"
+                name="event-start"
+                bind:value={start}
+            />
+
+            <label for="event-end">Fin de l'évènement</label>
+            <input
+                    type="datetime-local"
+                    id="event-end"
+                    name="event-end"
+                    bind:value={end}
+            />
+
+            <input type="submit" value="Soumettre"/>
         </section>
     </form>
 </section>
