@@ -36,7 +36,7 @@ model Category {
   id              Int     @id
   name            String  @unique
   color           String
-  backgroundColor String
+  backgroundColor String  @map("background_color")
   Event           Event[]
 
   @@map("category")
