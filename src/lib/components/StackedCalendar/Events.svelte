@@ -4,22 +4,34 @@
     /**
      * @type {any}
      */
-     export let events;
+    export let events;
 
-    $: eventsList = eventsToByDayList(events);
+    /**
+     * @type {Date}
+     */
+    export let start;
+
+    /**
+     * @type {Date}
+     */
+    export let end;
+
+    $: eventsList = eventsToByDayList(events, start, end);
 </script>
 
-<tr>
-    {#each eventsList as day}
-        <td>
-            <div class="stacked-calendar-col">
-                {#each day as event}
-                    <Event event={event}/>
-                {/each}
-            </div>
-        </td>
-    {/each}
-</tr>
+{#each eventsList as week}
+    <tr>
+        {#each week as day}
+            <td>
+                <div class="stacked-calendar-col">
+                    {#each day as event}
+                        <Event event={event}/>
+                    {/each}
+                </div>
+            </td>
+        {/each}
+    </tr>
+{/each}
 
 <style>
     .stacked-calendar-col {

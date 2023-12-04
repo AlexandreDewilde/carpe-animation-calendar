@@ -37,7 +37,7 @@
             <TableHead/>
         </thead>
         <tbody>
-            <Events events={events}/>
+            <Events events={events} start={start} end={end}/>
         </tbody>
     </table>
 </div>
