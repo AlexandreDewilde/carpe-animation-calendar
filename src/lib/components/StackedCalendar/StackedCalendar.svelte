@@ -4,28 +4,30 @@
 
     import TableHead from "./TableHead.svelte";
 
-    import { twoDatesToRead } from "$lib/utils";
+    import { twoDatesToRead, getDateString, getPrevUrl, getNextUrl } from "$lib/utils";
     /**
         * @type {Date}
     */
-    export let monday;
+    export let start;
     /**
         * @type {Date}
     */
-    export let sunday;
+    export let end;
+
+    /**
+     * @type {number}
+     * 0 == day View
+     * 1 == week view
+     * 2 == month view
+     */
+    export let viewType;
+
     export let events;
 
-    $: dateString = twoDatesToRead(monday, sunday);
-    $: nextMonday = new Date(monday);
-    $: prevMonday = new Date(monday);
-    let nextMondayUrl = "";
-    let prevMondayUrl = "";
-    $: {
-        nextMonday.setDate(monday.getDate() + 7);
-        nextMondayUrl = `/${nextMonday.getFullYear()}-${nextMonday.getMonth()+1}-${nextMonday.getDate()}`;
-        prevMonday.setDate(monday.getDate() - 7);
-        prevMondayUrl = `/${prevMonday.getFullYear()}-${prevMonday.getMonth()+1}-${prevMonday.getDate()}`;
-    }
+    $: dateString = getDateString(start, end, viewType);
+    $: nextMondayUrl = getNextUrl(start, end, viewType);
+    $: prevMondayUrl = getPrevUrl(start, end, viewType);
+
 </script>
 
 <div class="calendar">

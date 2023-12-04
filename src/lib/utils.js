@@ -14,6 +14,19 @@ export function twoDatesToRead(date1, date2) {
     return `${day1} ${m1 !== m2 ? months[m1] : ""} - ${day2} ${months[m2]} ${y2}`
 }
 
+/**
+ *
+ * @param {Date} start
+ * @param {Date} end
+ * @param {number} viewType
+ * @returns
+ */
+export function getDateString(start, end, viewType) {
+    if (viewType === 1) {
+        return twoDatesToRead(start, end);
+    }
+}
+
 //https://stackoverflow.com/questions/4156434/javascript-get-the-first-day-of-the-week-from-current-date
 /**
  *
@@ -59,4 +72,37 @@ export function eventsToByDayList(events) {
  */
 export function dateToStringHours(date) {
     return `${date.getHours()}h${date.getMinutes().toString().padStart(2,"0")}`;
+}
+
+/**
+ *
+ * @param {Date} start
+ * @param {Date} end
+ * @param {number} viewType
+ * @returns {string}
+ */
+
+export function getNextUrl(start, end, viewType) {
+    if (viewType === 1) {
+        const nextMonday = new Date(start);
+        nextMonday.setDate(start.getDate() + 7);
+        return `/${nextMonday.getFullYear()}-${nextMonday.getMonth()+1}-${nextMonday.getDate()}`;
+    }
+    return "/"
+}
+
+/** *
+ * @param {Date} start
+ * @param {Date} end
+ * @param {number} viewType
+ * @returns {string}
+ */
+
+export function getPrevUrl(start, end, viewType) {
+    if (viewType === 1) {
+        const prevMonday = new Date(end);
+        prevMonday.setDate(end.getDate() - 7);
+        return `/${prevMonday.getFullYear()}-${prevMonday.getMonth()+1}-${prevMonday.getDate()}`;
+    }
+    return "/"
 }
