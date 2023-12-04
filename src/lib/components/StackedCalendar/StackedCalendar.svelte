@@ -1,6 +1,7 @@
 <script>
     import Events from "./Events.svelte";
     import Header from "./Header.svelte";
+    import FilterCategories from "./FilterCategories.svelte"
 
     import TableHead from "./TableHead.svelte";
 
@@ -24,6 +25,13 @@
 
     export let events;
 
+    export let categories;
+
+    let checked = {};
+    for (const cat of categories) {
+        checked[cat.id] = true;
+    }
+
     $: dateString = getDateString(start, end, viewType);
     $: nextMondayUrl = getNextUrl(start, end, viewType);
     $: prevMondayUrl = getPrevUrl(start, end, viewType);
@@ -32,12 +40,13 @@
 
 <div class="calendar">
     <Header title={dateString} prevUrl={prevMondayUrl} nextUrl={nextMondayUrl}/>
+    <FilterCategories categories={categories} bind:checked/>
     <table>
         <thead>
             <TableHead/>
         </thead>
         <tbody>
-            <Events events={events} start={start} end={end}/>
+            <Events events={events} start={start} end={end} categoriesShow={checked}/>
         </tbody>
     </table>
 </div>

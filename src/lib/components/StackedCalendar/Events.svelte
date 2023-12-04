@@ -16,7 +16,11 @@
      */
     export let end;
 
+    export let categoriesShow;
+
+
     $: eventsList = eventsToByDayList(events, start, end);
+    // console.log(eventsList[0][0]);
 </script>
 
 {#each eventsList as week}
@@ -25,7 +29,9 @@
             <td>
                 <div class="stacked-calendar-col">
                     {#each day as event}
-                        <Event event={event}/>
+                        {#if categoriesShow[event.event.categoryId]}
+                            <Event event={event}/>
+                        {/if}
                     {/each}
                 </div>
             </td>

@@ -10,7 +10,7 @@
 </svelte:head>
 
 <section class="large">
-	<StackedCalendar start={data.monday} end={data.sunday} viewType={1} events={data.events}/>
+	<StackedCalendar start={data.monday} end={data.sunday} viewType={1} events={data.events} categories={data.categories}/>
 </section>
 
 <section class="small">
