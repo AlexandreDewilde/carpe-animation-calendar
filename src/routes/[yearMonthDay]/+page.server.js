@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { getEvents } from "$lib/server/getEvents"
 import { getMonday, getSunday } from "$lib/utils";
+import { getCategories } from '$lib/server/getCategories';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
@@ -14,5 +15,5 @@ export async function load({ params }) {
     const monday = getMonday(new Date(year, month-1, day));
     const sunday = getSunday(monday);
     const events = await getEvents(monday, sunday);
-	return {monday: monday, sunday: sunday, events: events};
+	return {monday: monday, sunday: sunday, events: events, categories: await getCategories()};
 }
