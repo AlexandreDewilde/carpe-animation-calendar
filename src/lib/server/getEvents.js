@@ -5,12 +5,16 @@ import prisma from "$lib/prisma";
  * @param {Date} sunday
  */
 export async function getEvents(monday, sunday) {
-    return await prisma.eventDate.findMany({
+    return prisma.eventDate.findMany({
         select: {
             id: true,
             start: true,
             end: true,
-            event: true,
+            event: {
+                include: {
+                    category: true,
+                }
+            }
         },
         where: {
             start: {

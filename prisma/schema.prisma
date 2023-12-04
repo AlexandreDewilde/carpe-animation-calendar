@@ -8,25 +8,36 @@ datasource db {
 }
 
 model Event {
-  id    Int @id
-  name  String
-  category String
+  id          Int         @id
+  name        String
+  category    Category    @relation(fields: [categoryId], references: [id])
   description String
-  organizer String
-  price Float
-  place String
-  dates EventDate[]
-  imgUrl String @map("img_url")
+  organizer   String
+  price       Float
+  place       String
+  dates       EventDate[]
+  imgUrl      String      @map("img_url")
+  categoryId  Int
 
   @@map("event")
 }
 
 model EventDate {
-  id    Int @id @default(autoincrement())
-  start DateTime
-  end   DateTime
-  event Event @relation(fields: [eventId], references: [id])
-  eventId Int @map("event_id")
+  id      Int      @id @default(autoincrement())
+  start   DateTime
+  end     DateTime
+  event   Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  eventId Int      @map("event_id")
 
   @@map("event_date")
+}
+
+model Category {
+  id              Int     @id
+  name            String  @unique
+  color           String
+  backgroundColor String  @map("background_color")
+  Event           Event[]
+
+  @@map("category")
 }
