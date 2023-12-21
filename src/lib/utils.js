@@ -72,7 +72,12 @@ export function eventsToByDayList(events, start, end) {
  * @param {Date} date
  */
 export function dateToStringHours(date) {
-    return `${date.getHours()}h${date.getMinutes().toString().padStart(2,"0")}`;
+    const options = {
+        hour: 'numeric',
+        minute: 'numeric',
+    };
+
+    return date.toLocaleString('fr-BE', options);
 }
 
 /**
