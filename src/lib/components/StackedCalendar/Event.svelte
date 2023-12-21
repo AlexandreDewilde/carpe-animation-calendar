@@ -21,7 +21,7 @@
      });
 </script>
 
-<a href="/">
+<a href="/event/{event.event.id}">
     <div class="event" bind:this={eventDiv} style="background-color:{event.event.category.backgroundColor};color:{event.event.category.color}">
         <span class="event-title">{event.event.name}</span>
         <span class="event-place">{event.event.place}</span>
