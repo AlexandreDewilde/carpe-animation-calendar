@@ -31,5 +31,6 @@
 
 	@media (max-width: 768px) {
     	.large { display: none; }
+		.small { display: block }
   	}
 </style>
