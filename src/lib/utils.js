@@ -72,7 +72,12 @@ export function eventsToByDayList(events, start, end) {
  * @param {Date} date
  */
 export function dateToStringHours(date) {
-    return `${date.getHours()}h${date.getMinutes().toString().padStart(2,"0")}`;
+    const options = {
+        hour: 'numeric',
+        minute: 'numeric',
+    };
+
+    return date.toLocaleString('fr-BE', options);
 }
 
 /**
@@ -106,4 +111,20 @@ export function getPrevUrl(start, end, viewType) {
         return `/${prevMonday.getFullYear()}-${prevMonday.getMonth()+1}-${prevMonday.getDate()}`;
     }
     return "/"
+}
+
+export function toLocaleDateString(dateString) {
+    const date = new Date(dateString);
+
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        timeZone: 'Europe/Brussels', // Specify the desired time zone
+    };
+
+    return date.toLocaleString('fr-BE', options);
 }
